@@ -3,13 +3,14 @@
 \usepackage{graphicx}
 \usepackage{color}
 \usepackage{latexsym,amsmath}
-
+\usepackage{hyperref}
 \definecolor{linkcolor}{rgb}{0,0,0.65} %hyperlink
-\usepackage[pdftex,colorlinks=true, pdfstartview=FitV, linkcolor= linkcolor, citecolor= linkcolor, urlcolor= linkcolor, hyperindex=true,hyperfigures=true]{hyperref} %hyperlink%
+ %hyperlink%
 
 
 
 \begin{document}
+
 
 \title{WASC -- Deep Neural Network}
 
@@ -17,10 +18,10 @@
 
 
 
-\author{1}
-\author{2}
-\author{3}
-\author{4}
+\author Walter Zigliotto
+\author Andrea Nicolai
+\author Sandeep Kumar Shekhar
+\author Camilla Quaglia
 
 \date{\today}
 
@@ -38,29 +39,52 @@ DDN is ...
 
 \section{Introduction}
 
-The main purpose of this project is ...
+The main purpose of this project is to setup a Deep Neural Network with only two layers in order to see which set of parameters leads to the best performance. The goal is to predict whether a \textbf{SEE AGAIN VIDEOS FOR NUMBERS} sequence of 7 numbers hides a key \textbf{OR TWO?} subsequence of \textbf{XX} digits inside itself, once we have trained the network on a provided dataset.
 
+\medskip 
 
+WHAT IS A DNN.\\
 
+\medskip
 
-
-
+just few lines on parameters we changed:
+WHAT IS AN ACTIVATION FUNCTION (it must be not linear, it rules output of single nodes...)\\ 
+WHAT IS A REGULARIZATION (regularize weights in order to prevent overfitting)\\
+WHAT IS A DROPOUT (we "burn" some nodes in order to enlarge stochasticity and thus generalization "property" of the network therefore preventing overfitting)\\
+WHAT IS AN OPTIMIZER (to train network we minimize the loss wrt to weights at each epoch, so in order to find the minimum we use different algorithms)\\
 
 
  \section{Methods}
-
-
+We used Python and also Keras with Tensorflow backend (IMPORTANT TENSORFLOW SINCE THERE ARE ALSO OTHER BACKENDS, AND IN RESULTS THERE ARE SOME CONSIDERATIONS ABOUT THE VERSION...).
  
+from exercise text:
+"Assuming that there is an invariance of the results with respect to shift of the digits"
+WE AUGMENTED THE DATA IN ORDER TO ENLARGE DATASET
+
+HOW DID WE DO THIS? CODE NEEDED? ->
+
+\medskip
+
+WE IMPLEMENTED A GRID SEARCH
+
+WE ALSO TRIED TO "NORMALIZE" SHIFT/RESCALE THE DATA
 
 
 \section{Results}
 
+HOW DIFFERENT METHODS WORKED:
+-FOR NORMAL DATA WE HAVE SMALL ACCURACY AND OVERFITTING (PLOT)\\
+-FOR AUGMENTED DATA WE HAVE PERFECT PERFORMANCE\\
+-RESHIFT IS JUST A WAISTE OF TIME\\
 
+WHICH SET OF PARAMETERS HAS LED US TO WIN THE COMPETITION\\
+
+A FEW LINES ABOUT TENSORFLOW BACKEND THAT IF 2.0 WE OBTAIN 100\% PERFORMANCE, WITH SAME SAME SET OF PARAMETERS (even seed) IT IS DIFFERENT. \\
 
 
 \section{Conclusions}
 
-
+PRAISE THE SUN
 
   
 
