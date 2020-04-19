@@ -1,0 +1,39 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{expand\PYGZus{}augment}\PYG{p}{(}\PYG{n}{data}\PYG{p}{,} \PYG{n}{label}\PYG{p}{):}
+  \PYG{n}{S} \PYG{o}{=} \PYG{n}{data}
+
+  \PYG{c+c1}{\PYGZsh{}small debug}
+  \PYG{k}{if}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{S}\PYG{p}{))}\PYG{o}{!=}\PYG{n}{L}\PYG{p}{):}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}mismatch!\PYGZsq{}}\PYG{p}{)}
+    \PYG{k}{return}\PYG{p}{[]}
+
+  \PYG{c+c1}{\PYGZsh{}initialize empty vectors}
+  \PYG{n}{x\PYGZus{}temp} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{*} \PYG{n}{LD}
+  \PYG{n}{y\PYGZus{}temp} \PYG{o}{=} \PYG{n}{label}
+
+  \PYG{n}{p} \PYG{o}{=} \PYG{l+m+mi}{10}\PYG{o}{**}\PYG{p}{(}\PYG{n}{L}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}
+  \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}
+
+  \PYG{c+c1}{\PYGZsh{}in this way we obtain the first digit (MSD)}
+  \PYG{k}{while} \PYG{p}{(}\PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{L}\PYG{p}{):}
+    \PYG{n}{q} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{S}\PYG{o}{/}\PYG{n}{p}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} 1...9 \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZgt{} 0...8}
+    \PYG{n}{x\PYGZus{}temp}\PYG{p}{[}\PYG{n}{j}\PYG{o}{*}\PYG{n}{D} \PYG{o}{+} \PYG{p}{(}\PYG{n}{q}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)]} \PYG{o}{=} \PYG{l+m+mi}{1}
+    \PYG{n}{j} \PYG{o}{+=} \PYG{l+m+mi}{1}
+    \PYG{n}{S} \PYG{o}{=} \PYG{n}{S} \PYG{o}{\PYGZhy{}} \PYG{n}{q}\PYG{o}{*}\PYG{n}{p}
+    \PYG{n}{p} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{p}\PYG{o}{/}\PYG{l+m+mi}{10}\PYG{p}{)}
+
+  \PYG{n}{x\PYGZus{}aug}  \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{*} \PYG{n}{LD} \PYG{o}{*} \PYG{n}{L}
+  \PYG{n}{x\PYGZus{}aug}  \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{n}{x\PYGZus{}aug}\PYG{p}{,} \PYG{p}{(}\PYG{n}{L}\PYG{p}{,} \PYG{n}{LD}\PYG{p}{))}
+  \PYG{n}{y\PYGZus{}aug}  \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{([}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{*}\PYG{n}{L}\PYG{p}{)}
+
+  \PYG{c+c1}{\PYGZsh{}for each combination possible by shifting}
+  \PYG{k}{for} \PYG{n}{combination} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{L}\PYG{p}{):}
+    \PYG{c+c1}{\PYGZsh{}for each possible number}
+    \PYG{k}{for} \PYG{n}{index} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{LD}\PYG{p}{):}
+      \PYG{n}{x\PYGZus{}aug}\PYG{p}{[}\PYG{n}{combination}\PYG{p}{][(}\PYG{n}{index} \PYG{o}{+} \PYG{n}{combination}\PYG{o}{*}\PYG{n}{D}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{LD}\PYG{p}{]} \PYG{o}{=} \PYG{n}{x\PYGZus{}temp}\PYG{p}{[}\PYG{n}{index}\PYG{p}{]}
+      \PYG{n}{y\PYGZus{}aug}\PYG{p}{[}\PYG{n}{combination}\PYG{p}{]} \PYG{o}{=} \PYG{n}{label}
+
+  \PYG{k}{return} \PYG{n}{x\PYGZus{}aug}\PYG{p}{,} \PYG{n}{y\PYGZus{}aug}
+\end{Verbatim}
