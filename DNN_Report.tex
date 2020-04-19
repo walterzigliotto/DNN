@@ -31,10 +31,8 @@
 
 
 \begin{abstract}
-DDN is ...
-
-
-
+	
+The aim of this project is to develop a two layers Deep Neural Network (DNN) algorithm able to predict which sequences of a specific dataset are the secret keys. For such purpose, using a given neural network architecture, data processing techniques were used to manage the initial dataset and some DNN parameters, such as activation function, regularization, dropout and optimizer, were changed in order to improve the results. At the end, the optimal outcomes provide the efficiency of such tool on this problem.
 
 \end{abstract}
 
@@ -43,19 +41,47 @@ DDN is ...
 
 \section{Introduction}
 
-The main purpose of this project is to setup a Deep Neural Network with only two layers in order to see which set of parameters leads to the best performance. The goal is to predict whether a \textbf{SEE AGAIN VIDEOS FOR NUMBERS} sequence of 7 numbers hides a key \textbf{OR TWO?} subsequence of \textbf{XX} digits inside itself, once we have trained the network on a provided dataset.
+Deep Neural Network is principally a supervised machine learning technique. DNN is a discriminative model, that is the reason why it can only be used on the data classification task. Inspired by human brain activity, DNN architecture consists essentially on basic units, called “neurons”, and on their three macro-blocks organization (Fig.1):
+{
+\begin{itemize}
+	\item Input layer: initial raw data for the neural network.
+	\item Hidden layers: intermediate layer, the black box of the system, where computation is done.
+	\item Output layer: result of the classification process.
+\end{itemize}
+}
 
-\medskip 
+%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h]
+	\includegraphics[width=0.44\textwidth]{DNN_structure.png}
+	\caption{example of DNN structure.}
+	\label{fig:y}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%
 
-WHAT IS A DNN.\\
+Each neuron receives, as input, a linear combination of the previous layer neurons weighted by the edge weights, apply to the result a non-linear activation function and transmits, as output, the outcome to the next layer in turn. Formally, this process can be described by the following equation:
 
-\medskip
+\begin{equation}
+o_{t+1,j}(x) = \sigma \left(\sum_{r:(v_{t,r}, v_{t+1,j}) \in E}w(v_{t,r}, v_{t+1,j})o_{t,r}(x)\right)
+\label{eq:simple}
+\end{equation}
 
-just few lines on parameters we changed:
-WHAT IS AN ACTIVATION FUNCTION (it must be not linear, it rules output of single nodes...)\\ 
-WHAT IS A REGULARIZATION (regularize weights in order to prevent overfitting)\\
-WHAT IS A DROPOUT (we "burn" some nodes in order to enlarge stochasticity and thus generalization "property" of the network therefore preventing overfitting)\\
-WHAT IS AN OPTIMIZER (to train network we minimize the loss wrt to weights at each epoch, so in order to find the minimum we use different algorithms)\\
+where \(o_{t+1,j}(x)\) is the output of the neuron, \(w(v_{t,r}, v_{t+1,j})\) is the weight of each neuron connection with \(o_{t,r}(x)\) the previous layer neuron outcome and \(sigma\) is the activation function [cit.1]. Many possible activation function (e.g., sigmoid function, Rectified Linear Unit (ReLU)) can be chosen and, along this choice depends the action potential firing of the neuron (Fig. 2):
+
+%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h]
+	\includegraphics[width=0.44\textwidth]{Activation.png}
+	\caption{example of single neuron behaviour.}
+	\label{fig:y}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%
+
+After having define the structure, DNN has to be trained in order to improve its performance.  This procedure is done through the Stochastic Gradient Descent (SGD) method and a backpropagation algorithm. SGD is used to minimize the cost/loss function and find the optimal weights and biases. Thereafter, via backpropagation algorithm, a clever procedure that exploits the layered structure of Neural Network (NN), NN connections are rearranged to improve the results [cit. 2]. So, as to optimize the outcomes, many algorithm were attempted. \\
+In order to generalize DNN to new data, avoiding overfitting problem, is also helpful to apply some regularization techniques. Primarily, Regularized Loss Minimization (RLM) methods were introduced to minimize the sum of the empirical risk and a regularization function. This regularization function acts as stabilizer of the learning algorithm, so that a tiny change of its input does not change its output much [cit. 1]. Basically, the idea is to balance the complexity of hypothesis (e.g., if the empirical risk is low, but the complexity is high, probably overfitting problem could appear). For such purpose, functions, such as L2 norm and L1 (LASSO), were tried. Another method used is Dropout. The basic idea of Dropout is to prevent overfitting by reducing spurious correlations between neurons within the network by introducing a randomization. It consists of randomly “dropped out” neurons of the neural network with some probability p giving rise to a thinned network [cit. 2]. \\
+
+(Finally, DNN is one of the promising machine learning techniques that can be applied, despite some modification, to many field, such as speech recognition and image....)
+
+
+
 
 
 \section{Methods}
@@ -125,7 +151,7 @@ A FEW LINES ABOUT TENSORFLOW BACKEND THAT IF 2.0 WE OBTAIN 100\% PERFORMANCE, WI
 
 \section{Conclusions}
 
-PRAISE THE SUN
+PRAISE THE SUN TWICE
 
   
 
